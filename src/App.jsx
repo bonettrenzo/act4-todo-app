@@ -10,6 +10,7 @@ function App() {
       <h1>feature/eliminar-tareas</h1>
       <h1>feature/contador-pendientes</h1>
       <h1>feature/persistencia-localstorage</h1>
+      <h1>feature/limpiar-tareas-completadas</h1>
     </>
 
   )
