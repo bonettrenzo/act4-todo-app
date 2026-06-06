@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import useTareas from './hooks/useTareas'
 import CustomTitle from './componets/CustomTitle'
+import TodoItem from './componets/TodoItem'
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
 
       <ul style={{ listStyle: 'none', padding: 0 }}>
         {tareas.map(tarea => (
-          <TodoItem 
+          <TodoItem
             key={tarea.id} 
             tarea={tarea} 
             manejarAlternarCompletada={manejarAlternarCompletada}

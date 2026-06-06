@@ -1,4 +1,4 @@
-function TodoItem({ tarea, manejarAlternarCompletada, manejarEliminar }) {
+export default function TodoItem({ tarea, manejarAlternarCompletada, manejarEliminar }) {
   return (
     <li 
       style={{ 
@@ -19,7 +19,7 @@ function TodoItem({ tarea, manejarAlternarCompletada, manejarEliminar }) {
         />
         <span style={{ 
           textDecoration: tarea.completada ? 'line-through' : 'none',
-          color: tarea.completada ? '#888' : '#000'
+          color: tarea.completada ? '#888' : '#ffffff'
         }}>
           {tarea.texto}
         </span>
