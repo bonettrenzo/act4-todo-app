@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import useTareas from './hooks/useTareas'
+import CustomTitle from './componets/CustomTitle'
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <div style={{ maxWidth: '500px', margin: '40px auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>Mi Lista de Tareas</h1>
+      <CustomTitle title="Mi Lista de Tareas" />
 
       {/* Formulario para agregar tareas */}
       <form onSubmit={manejarAgregar} style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
