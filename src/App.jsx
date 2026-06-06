@@ -4,7 +4,7 @@ function App() {
   // feature/persistencia-localstorage: Inicializamos el estado con lo que haya en localStorage
   const [tareas, setTareas] = useState(() => {
     const tareasGuardadas = localStorage.getItem('mis_tareas')
-    return tareasGuardadas ? JSON.parse(tareasadas) : []
+    return tareasGuardadas ? JSON.parse(tareasGuardadas) : []
   })
   
   const [nuevaTarea, setNuevaTarea] = useState('')
