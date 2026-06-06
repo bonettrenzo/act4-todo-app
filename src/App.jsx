@@ -1,56 +1,19 @@
 import { useState, useEffect } from 'react'
+import useTareas from './hooks/useTareas'
 
 function App() {
-  // feature/persistencia-localstorage: Inicializamos el estado con lo que haya en localStorage
-  const [tareas, setTareas] = useState(() => {
-    const tareasGuardadas = localStorage.getItem('mis_tareas')
-    return tareasGuardadas ? JSON.parse(tareasGuardadas) : []
-  })
-  
-  const [nuevaTarea, setNuevaTarea] = useState('')
 
-  // feature/persistencia-localstorage: Guardamos en localStorage cada vez que las tareas cambien
-  useEffect(() => {
-    localStorage.setItem('mis_tareas', JSON.stringify(tareas))
-  }, [tareas])
-
-  // feature/agregar-tareas
-  const manejarAgregar = (e) => {
-    e.preventDefault()
-    if (!nuevaTarea.trim()) return // Evita tareas vacías
-
-    const tareaNueva = {
-      id: Date.now(), // ID único basado en el tiempo
-      texto: nuevaTarea,
-      completada: false
-    }
-
-    setTareas([...tareas, tareaNueva])
-    setNuevaTarea('') // Limpiar el input
-  }
-
-  // feature/completar-tareas
-  const manejarAlternarCompletada = (id) => {
-    const tareasActualizadas = tareas.map(tarea => 
-      tarea.id === id ? { ...tarea, completada: !tarea.completada } : tarea
-    )
-    setTareas(tareasActualizadas)
-  }
-
-  // feature/eliminar-tareas
-  const manejarEliminar = (id) => {
-    const tareasFiltradas = tareas.filter(tarea => tarea.id !== id)
-    setTareas(tareasFiltradas)
-  }
-
-  // feature/limpiar-tareas-completadas
-  const manejarLimpiarCompletadas = () => {
-    const tareasPendientes = tareas.filter(tarea => !tarea.completada)
-    setTareas(tareasPendientes)
-  }
-
-  // feature/contador-pendientes
-  const tareasPendientes = tareas.filter(tarea => !tarea.completada).length
+  const {
+      tareas,
+      nuevaTarea,
+      setNuevaTarea,
+      tareasPendientes,
+      tieneCompletadas,
+      manejarAgregar,
+      manejarAlternarCompletada,
+      manejarEliminar,
+      manejarLimpiarCompletadas
+    } = useTareas()
 
   return (
     <div style={{ maxWidth: '500px', margin: '40px auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
@@ -114,7 +77,6 @@ function App() {
         ))}
       </ul>
 
-      {/* Botón para limpiar completadas */}
       {tareas.length > tareasPendientes && (
         <button 
           onClick={manejarLimpiarCompletadas}
